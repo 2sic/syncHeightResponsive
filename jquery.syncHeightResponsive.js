@@ -1,5 +1,6 @@
 /**
     2sic sync-height jQuery plugin
+    https://github.com/raphael-m/syncHeightResponsive/
     Syncs the height of elements that are displayed beneath each other (by comparing their offset top)
     Include also the waitForImages plugin to ensure correct behaviour when elements contain images
 **/
