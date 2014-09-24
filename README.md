@@ -7,7 +7,7 @@ syncHeightResponsive is a jQuery plugin which can sync the height of elements th
 ```js
 $(document).ready(function () {
     /* Trigger syncHeightResponsive Plugin */
-    $(".element").syncHeight();
+    $(".element").syncHeightResponsive();
 });
 ```
 
