@@ -22,7 +22,7 @@
 
             $(self).each(function (i, e) {
 
-                var top = $(e).offset().top;
+                var top = Math.round($(e).offset().top);
 
                 if (top != previousTop && currentGroup.length > 0) {
                     elementGroups.push(currentGroup);
