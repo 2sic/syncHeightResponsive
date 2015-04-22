@@ -64,13 +64,21 @@
             triggerHeightSync();
         });
 
-        $(window).resize(function () {
-            triggerHeightSync();
-        });
-
         if ($.fn.waitForImages) {
-            $(self).waitForImages(triggerHeightSync);
+        	$(self).waitForImages(triggerHeightSync);
         }
+
+	    var ticking = false;
+	    var update = function() {
+	    	ticking = false;
+		    triggerHeightSync();
+	    };
+
+        $(window).resize(function () {
+        	if (!ticking)
+        		requestAnimationFrame(update);
+        	ticking = true;
+        });
 
     };
 
