@@ -43,7 +43,7 @@
 
                 // Get maximal height value 
                 var maxHeight = 0;
-                $(elements).css('height', 'auto');
+                $(elements).css('height', '');
 
                 $.each(elements, function (i, element) {
                     maxHeight = Math.max(maxHeight, $(element).height());
