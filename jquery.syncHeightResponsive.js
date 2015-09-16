@@ -17,29 +17,20 @@
 
             // Group elements by getting the offset top value
             var previousTop = 0,
-            elementGroups = [],
-            currentGroup = [];
+            	elementGroups = {};
 
             $(self).each(function (i, e) {
 
                 var top = Math.round($(e).offset().top);
 
-                if (top != previousTop && currentGroup.length > 0) {
-                    elementGroups.push(currentGroup);
-                    currentGroup = [];
-                }
-
-                currentGroup.push(e);
-                previousTop = top;
+                if (!elementGroups[top])
+                    elementGroups[top] = [];
+                elementGroups[top].push(e);
 
             });
 
-            if (currentGroup.length > 0) {
-                elementGroups.push(currentGroup);
-            }
-
             // All groups are created, sync height for each group separately
-            $.each(elementGroups, function (i, elements) {
+            $.each(elementGroups, function (k, elements) {
 
                 // Get maximal height value 
                 var maxHeight = 0;
