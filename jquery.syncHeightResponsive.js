@@ -67,10 +67,35 @@
 
         $(window).resize(function () {
         	if (!ticking)
-        		requestAnimationFrame(update);
+        		window.requestAnimationFrame(update);
         	ticking = true;
         });
 
     };
-
 })(jQuery);
+
+/* Polyfill for requestAnimationFrame
+	Source: http://www.paulirish.com/2011/requestanimationframe-for-smart-animating/
+*/
+(function() {
+		if(window.requestAnimationFrame)
+			return;
+			
+    var lastTime = 0;
+    var vendors = ['webkit', 'moz'];
+    for(var x = 0; x < vendors.length; ++x) {
+        window.requestAnimationFrame = window[vendors[x]+'RequestAnimationFrame'];
+        window.cancelAnimationFrame =
+          window[vendors[x]+'CancelAnimationFrame'] || window[vendors[x]+'CancelRequestAnimationFrame'];
+    }
+		
+		window.requestAnimationFrame = function(callback, element) {
+				var currTime = new Date().getTime();
+				var timeToCall = Math.max(0, 16 - (currTime - lastTime));
+				var id = window.setTimeout(function() { callback(currTime + timeToCall); },
+					timeToCall);
+				lastTime = currTime + timeToCall;
+				return id;
+		};
+		
+}());
