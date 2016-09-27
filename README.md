@@ -11,10 +11,8 @@ $(document).ready(function () {
 });
 ```
 
-...more documentation needed...
-
 ## Wait for images
 If the elements contain images, include also `jquery.waitforimages.min.js` from https://github.com/alexanderdickson/waitForImages to ensure the height is synced correctly. syncHeightResponsive will automatically use waitForImages and calculate the height again after all images have loaded.
 
 ## Example
-https://cdn.rawgit.com/raphael-m/syncHeightResponsive/master/example.html
+https://cdn.rawgit.com/2sic/syncHeightResponsive/master/example.html
