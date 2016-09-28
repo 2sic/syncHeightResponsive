@@ -6,7 +6,10 @@
 **/
 
 (function ($) {
-    
+	// Prevent duplicate initialization
+    if($.fn.syncHeightResponsive)
+		return;
+	
     $.fn.syncHeightResponsive = function (config) {
         
         // Self will contain the elements to sync
