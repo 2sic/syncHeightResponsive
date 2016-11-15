@@ -35,19 +35,19 @@
 		</div>
 		<p>Example (same HTML with syncHeightResponsive):</p>
 		<div class='col-wrapper'>
-			<div class='col sync-height'>
+			<div class='col sync-height-with-neighbors'>
 				<h2>Column 1</h2>
 				<p>Lorem ipsum dolor sit amet.</p>
 			</div>
-			<div class='col sync-height'>
+			<div class='col sync-height-with-neighbors'>
 				<h2>Column 2</h2>
 				<p>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.</p>
 			</div>
-			<div class='col sync-height'>
+			<div class='col sync-height-with-neighbors'>
 				<h2>Column 3</h2>
 				<p>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.</p>
 			</div>
-			<div class='col sync-height'>
+			<div class='col sync-height-with-neighbors'>
 				<h2>Column 4</h2>
 				<p>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.</p>
 			</div>
@@ -63,10 +63,10 @@
 		
 	</footer>
 	<script src='https://code.jquery.com/jquery-1.11.3.min.js'></script>
-	<script src='jquery.syncHeightResponsive.min.js'></script>
+	<script src='src/jquery.syncHeightResponsive.js'></script>
 	<script>
 		$(document).ready(function() {
-			$('.sync-height').syncHeightResponsive();
+			$.syncHeightResponsive();
 		});
 	</script>
 </body>
