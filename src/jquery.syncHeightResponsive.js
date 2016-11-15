@@ -18,6 +18,11 @@
     // The main function to be called from outside - triggers the height sync
 	$.syncHeightResponsive = function() {
         elementsToSync = $(selector);
+		
+		// Call sync wrapped in a timeout to make sure other scripts that could modify the height have already run
+		window.setTimeout(function () {
+			triggerHeightSync();
+		}, 0);
     }
 
     // The main function - run height sync
@@ -54,11 +59,6 @@
         });
 
     }
-
-    // Call sync wrapped in a timeout to make sure other scripts that could modify the height have already run
-    window.setTimeout(function () {
-        triggerHeightSync();
-    }, 0);
 
     $(window).load(function () {
         triggerHeightSync();
