@@ -34,7 +34,7 @@
 			</div>
 		</div>
 		<p>Example (same HTML with syncHeightResponsive):</p>
-		<div class='col-wrapper'>
+		<div class='col-wrapper try-dynamic-container'>
 			<div class='col sync-height-with-neighbors'>
 				<h2>Column 1</h2>
 				<p>Lorem ipsum dolor sit amet.</p>
@@ -52,6 +52,8 @@
 				<p>Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet.</p>
 			</div>
 		</div>
+		syncHeightResponsive also works when elements are dynamically added to the DOM
+		<button class="try-dynamic">Try it</button>
 		<style type='text/css'>
 			.col-wrapper { width:100%; max-width:600px; overflow:hidden; }
 			.col-wrapper, .col-wrapper * { box-sizing: border-box; }
@@ -66,7 +68,10 @@
 	<script src='src/jquery.syncHeightResponsive.js'></script>
 	<script>
 		$(document).ready(function() {
-			$.syncHeightResponsive();
+			var tryPos = 0;
+			$('.try-dynamic').click(function() {
+				$($('.try-dynamic-container .col')[tryPos++]).clone().css('height', '').appendTo($('.try-dynamic-container'));
+			});
 		});
 	</script>
 </body>

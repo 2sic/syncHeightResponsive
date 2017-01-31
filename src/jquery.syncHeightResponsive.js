@@ -10,19 +10,25 @@
 	// Prevent duplicate initialization
     if($.syncHeightResponsive)
 		return;
+    $.syncHeightResponsive = 'initialized';
     
     // Elements array will contain all elements which have been added to be synced
-    var selector = '.sync-height-with-neighbors';
+    var syncClass = 'sync-height-with-neighbors'; 
+    var selector = '.' + syncClass;
     var elementsToSync = [];
 
     // The main function to be called from outside - triggers the height sync
-	$.syncHeightResponsive = function() {
+	var init = function() {
         elementsToSync = $(selector);
 		
 		// Call sync wrapped in a timeout to make sure other scripts that could modify the height have already run
 		window.setTimeout(function () {
 			triggerHeightSync();
 		}, 0);
+		
+		if ($.fn.waitForImages) {
+			$(elementsToSync).waitForImages(triggerHeightSync);
+		}
     }
 
     // The main function - run height sync
@@ -60,13 +66,13 @@
 
     }
 
+    $(document).ready(function() {
+        init();
+    });
+
     $(window).load(function () {
         triggerHeightSync();
     });
-
-    if ($.fn.waitForImages) {
-        $(elementsToSync).waitForImages(triggerHeightSync);
-    }
 
     var ticking = false;
     var update = function() {
@@ -79,6 +85,21 @@
             window.requestAnimationFrame(update);
         ticking = true;
     });
+
+    // Re-init elements when elements are added to the page dynamically
+    if(MutationObserver) {
+        var observer = new MutationObserver(function(mutations) {
+            mutations.forEach(function(mutation) {
+                if($(mutation.addedNodes).hasClass('sync-height-with-neighbors') ||
+                $(mutation.addedNodes).find('.sync-height-with-neighbors').size() > 0 ||
+                $(mutation.removedNodes).hasClass('sync-height-with-neighbors'))
+                {
+                    init();
+                }
+            });
+        });
+        observer.observe(document, { attributes: false, childList: true, characterData: false, subtree: true });
+    }
 
 })(jQuery);
 
